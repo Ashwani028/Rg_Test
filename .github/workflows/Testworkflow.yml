@@ -10,4 +10,4 @@ jobs:
     runs-on: self_hosted
     steps:
       - name: My first step
-        run: echo "Ashwani"
+        run: echo Ashwani
