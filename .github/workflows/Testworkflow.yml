@@ -55,7 +55,7 @@ jobs:
       - name: terraform-apply
         uses: dflook/terraform-apply@v1.29.1
         with:
-          path: "."
+          path: .
           auto_approve: true
 
       
