@@ -5,9 +5,11 @@ on:
     branches:
       - 'main'
 jobs:
-  JOB1:
+  job:
     name: Testing
     runs-on: self_hosted
     steps:
       - name: My first step
         run: echo Ashwani
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
