@@ -1,0 +1,13 @@
+name: Test_workflow
+
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  JOB1:
+    name: Testing
+    runs-on: self_hosted
+    steps:
+      - name: My first step
+        run: echo "Ashwani"
