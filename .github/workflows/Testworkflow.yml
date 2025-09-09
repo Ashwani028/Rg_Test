@@ -11,81 +11,80 @@ permissions:
   contents: read
       
 jobs:
-  job:
     terraform_init_plan:
      runs-on: self_hosted
-      steps:
-        - name: My first step
-          run: echo Ashwani
-        - name: Checkout
-          uses: actions/checkout@v5.0.0
-        - name: Install Terraform
-          uses: little-core-labs/install-terraform@v2.0.0
-          with:
-            version: v2.0.0
-  
-        - name: Azure Login
-          uses: Azure/login@v2.3.0
-          with:
-            client-id: 0aa9e2bc-6b20-4acf-8138-1b0be827cb86
-            tenant-id: 2e038d55-8828-4c61-9bd1-862031ee51bb
-            subscription-id: 07181b5e-cb73-4072-8605-0c0f9f4ae28f
-  
-        - name: Terraform fmt
-          working-directory: "."
-          id: fmt
-          run: terraform fmt -check
-          continue-on-error: true
-  
-        - name: Terraform Init
-          working-directory: "."
-          id: init
-          run: terraform init -input=false
-        
-        - name: Terraform Validate
-          working-directory: "."
-          id: validate
-          run: terraform validate -no-color
-        
-        - name: Terraform Plan
-          working-directory: "."
-          id: plan
-          run: terraform plan -no-color -input=false
-          continue-on-error: true
-  
-        - name: terraform-apply
-          with:
-            path: .
-            auto_approve: true
-   
+     steps:
+      - name: My first step
+        run: echo Ashwani
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: v2.0.0
+
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: 0aa9e2bc-6b20-4acf-8138-1b0be827cb86
+          tenant-id: 2e038d55-8828-4c61-9bd1-862031ee51bb
+          subscription-id: 07181b5e-cb73-4072-8605-0c0f9f4ae28f
+
+      - name: Terraform fmt
+        working-directory: "."
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: Terraform Init
+        working-directory: "."
+        id: init
+        run: terraform init -input=false
+      
+      - name: Terraform Validate
+        working-directory: "."
+        id: validate
+        run: terraform validate -no-color
+      
+      - name: Terraform Plan
+        working-directory: "."
+        id: plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+
+      - name: terraform-apply
+        with:
+          path: .
+          auto_approve: true
+ 
     terraform_apply:
-       runs-on: self_hosted
-       needs: terraform_init_plan
-  
-       steps: 
-        - name: Checkout
-          uses: actions/checkout@v5.0.0
-        - name: Install Terraform
-          uses: little-core-labs/install-terraform@v2.0.0
-          with:
-            version: v2.0.0
-          
-        - name: Azure Login
-          uses: Azure/login@v2.3.0
-          with:
-            client-id: 0aa9e2bc-6b20-4acf-8138-1b0be827cb86
-            tenant-id: 2e038d55-8828-4c61-9bd1-862031ee51bb
-            subscription-id: 07181b5e-cb73-4072-8605-0c0f9f4ae28f
-        - name: Terraform Init
-          working-directory: "."
-          id: init
-          run: terraform init -input=false
-  
-        - name: Terraform apply
-          working-directory: "."
-          id: apply
-          run: terraform apply --auto-approve
-  
+     runs-on: self_hosted
+     needs: terraform_init_plan
+
+     steps: 
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: v2.0.0
         
-            
-  
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: 0aa9e2bc-6b20-4acf-8138-1b0be827cb86
+          tenant-id: 2e038d55-8828-4c61-9bd1-862031ee51bb
+          subscription-id: 07181b5e-cb73-4072-8605-0c0f9f4ae28f
+      - name: Terraform Init
+        working-directory: "."
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform apply
+        working-directory: "."
+        id: apply
+        run: terraform apply --auto-approve
+
+      
+          
+
