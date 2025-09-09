@@ -54,6 +54,7 @@ jobs:
     terraform_apply_job:
      runs-on: self_hosted
      needs: terraform_init_plan
+     environment: dev
 
      steps: 
       - name: Checkout
